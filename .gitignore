@@ -1,8 +1,7 @@
-.idea/
-.vscode/
-node_modules/
-build/
-tmp/
-temp/
-ormconfig.json
-package-lock.json
+node_modules
+dist
+
+# sphinx folders
+_build
+_static
+_templates
