@@ -3,11 +3,12 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Routes } from "./routes/crmRoutes";
 import * as mongoose from "mongoose";
+import {createConnection} from "typeorm";
 import "reflect-metadata";
-import {User} from "./entity/User";
+import {User} from "../src/entity/User";
 
 
-createConnection().then(async connection => { 
+async createConnection().then( await connection => {
   class App {
 
       public app: express.Application = express();
@@ -15,7 +16,7 @@ createConnection().then(async connection => {
       public mongoUrl: string = 'mongodb://localhost/CRMdb';
 
 
-      constructor() {
+      async onstructor() {
           this.config();
           this.mongoSetup();
           this.routePrv.routes(this.app);
@@ -48,6 +49,8 @@ createConnection().then(async connection => {
       }
 
   }
+
+
 }).catch(error => console.log(error));
 
 export default new App().app;
