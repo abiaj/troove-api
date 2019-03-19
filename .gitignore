@@ -1,2 +1,10 @@
-/node_modules
+node_modules
+dist
+
+# sphinx folders
+_build
+_static
+_templates
+ormconfig.json
+.env
 package-lock.json

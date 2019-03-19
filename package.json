@@ -1,32 +1,35 @@
 {
-  "name": "troove-api",
+  "name": "troove",
   "version": "1.0.0",
-  "description": "The best place for your taste",
-  "main": "server.js",
+  "description": "Troove API built with NodeJS, Express, MongoDB and TypeScript",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "ts-node ./lib/server.ts",
-    "start": "nodemon ./dist/server.js",
+    "dev": "ts-node ./src/server.ts",
+    "migration-gen": "typeorm migration:generate -n UserMigration",
+    "migration-run": "typeorm migration:run",
+    "migration-revert": "typeorm migration:revert",
+    "start": "sudo nodemon ./dist/server.js",
     "prod": "npm run build && npm run start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jire4plus/troove-api.git"
-  },
-  "author": "Troove Inc",
+  "keywords": [
+    "user",
+    "location"
+  ],
+  "author": "Prem Baboo <premb.2012@gmail.com> (http://huulke.com)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jire4plus/troove-api/issues"
-  },
-  "homepage": "https://github.com/jire4plus/troove-api#readme",
   "dependencies": {
     "@types/express": "^4.16.1",
+    "@types/node": "^11.11.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "mongoose": "^5.4.17",
+    "mysql": "^2.14.1",
     "nodemon": "^1.18.10",
-    "typeorm": "^0.2.14"
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "0.2.15",
+    "dotenv": "^6.2.0"
   }
 }
