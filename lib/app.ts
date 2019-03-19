@@ -13,7 +13,7 @@ class App {
       public app: express.Application = express();
       public routePrv: Routes = new Routes();
       public mongoUrl: string = 'mongodb://localhost/CRMdb';
-      public connection;
+      public connection ;
 
 
       public constructor() {
@@ -21,20 +21,7 @@ class App {
           this.mongoSetup();
           this.mysqlConnection();
           this.routePrv.routes(this.app);
-          const user = new User();
-          user.firstName = "Timber";
-          user.lastName = "Saw";
-          user.age = 25;
-          this.connection.manager.save(user);
-          console.log("Saved a new user with id: " + user.id);
-
-          console.log("Loading users from the database...");
-          const users = this.connection.manager.find(User);
-          console.log("Loaded users: ", users);
-
-          console.log("Here you can setup and run express/koa/any other framework.");
-
-
+          this.mysqlConnection();
       }
 
       private config(): void{
@@ -50,10 +37,24 @@ class App {
       }
 
       private mysqlConnection(): void {
-        this.connection = createConnection().then(connection => {
-            // here you can start to work with your entities
-            console.log("Mysql connection is successfully done!! ");
-        }).catch(error => console.log("Mysql connection error ", error));
+        createConnection().then(async connection => {
+
+            console.log("Inserting a new user into the database...");
+            const user = new User();
+            user.firstName = "Timber";
+            user.lastName = "Saw";
+            user.age = 25;
+            await connection.manager.save(user);
+            console.log("Saved a new user with id: " + user.id);
+
+            console.log("Loading users from the database...");
+            const users = await connection.manager.find(User);
+            console.log("Loaded users: ", users);
+
+            console.log("Here you can setup and run express/koa/any other framework.");
+
+        }).catch(error => console.log(error));
+
       }
 
 }
