@@ -39,7 +39,11 @@ export class User {
     @Column({ default: true })
     isActive: boolean;
 
-    @CreateDateColumn({type: "timestamp"})
-    createdDate: New Date();
+    @CreateDateColumn()
+    createdDate: Date;
+
+    @UpdateDateColumn()
+    updatedDate: Date;
+
 
 }
