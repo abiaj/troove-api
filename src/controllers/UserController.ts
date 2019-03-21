@@ -49,12 +49,13 @@ export class UserController{
         console.log(req.body);
 
         let user:User = new User();
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
+        user.name = req.body.name;
+        user.username = req.body.username;
         user.email = req.body.email;
-        user.mobileprefix = req.body.mobileprefix;
-        user.mobile = req.body.mobile;
-        user.password = req.body.password; //Need to encrypt by algo
+        user.password = req.body.password;
+        user.phoneNumber = req.body.mobileprefix+req.body.phoneNumber;
+        user.gender = req.body.gender;
+        user.userType = req.body.userType;
         userRepo.createUser(user).then((result: any) => {
             console.log("Result : " + result);
             res.status(200).send({
