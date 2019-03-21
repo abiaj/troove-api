@@ -1,26 +1,38 @@
 import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity()
+@Entity("users")
 export class User {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column("text")
-    firstName: string;
+    name: string;
 
     @Column("text")
-    lastName: string;
+    username: string;
 
     @Column("text")
     email: string;
 
-    @Column("text")
-    password: string;
+    @Column({ nullable: true })
+    phoneNumber: string;
 
     @Column("text")
-    mobileprefix: string;
+    gender: string;
 
     @Column("text")
-    mobile: string;
+    gender: string;
+
+    @CreateDateColumn()
+    createdDate: Date;
+
+    @UpdateDateColumn()
+    updatedDate: Date;
+
+    @Column({ default: false })
+    isActive: boolean;
+
+
+
 }
